@@ -1,0 +1,47 @@
+[project]
+name = "pylibchecker"
+version = "0.0.1"
+description = "Utils inspired by LibChecker, checking Android so files."
+authors = [{ name = "LY", email = "ly-niko@qq.com" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+]
+keywords = ["apk", "jni", "android"]
+
+[tool.poetry]
+name = "pylibchecker"
+version = "0.0.1"
+description = "Utils inspired by LibChecker, checking Android so files."
+authors = ["LY <ly-niko@qq.com>"]
+license = "MIT"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+]
+packages = [
+    { include = "libchecker" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+platformdirs = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+Homepage = "https://github.com/Young-Lord/pylibchecker"
+Repository = "https://github.com/Young-Lord/pylibchecker"
+"Bug Tracker" = "https://github.com/Young-Lord/pylibchecker/issues"
