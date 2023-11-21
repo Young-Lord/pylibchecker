@@ -19,7 +19,7 @@ class Test(unittest.TestCase):
         self.assertEqual(response.label, "阿里移动推送")
 
     def test_normal(self):
-        responses = libchecker.query("libxcrash.so", libchecker.RuleType.SO)
+        responses = libchecker.query("libxcrash.so", libchecker.RuleType.NATIVE)
         self.assertEqual(len(responses), 1)
         response = responses[0]
         self.assertEqual(response.label, "xCrash")
@@ -28,7 +28,7 @@ class Test(unittest.TestCase):
 
     def test_query_many(self):
         responses = libchecker.query_many(
-            ["libxcrash.so", "libcocos2dcpp.so"], libchecker.RuleType.SO
+            ["libxcrash.so", "libcocos2dcpp.so"], libchecker.RuleType.NATIVE
         )
         self.assertEqual(len(responses), 2)
         self.assertEqual(responses[0].label, "xCrash")

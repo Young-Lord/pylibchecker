@@ -48,15 +48,20 @@ if not os.path.isfile(RULE_FILE):
 class RuleType(IntEnum):
     """
     The `type` field in `rules_table` of `rules.db`.
+    See: https://github.com/LibChecker/LibChecker-Rules-Bundle/blob/main/library/src/main/java/com/absinthe/rulesbundle/LibType.kt
     """
 
-    SO = 0
+    NOT_MARKED = -2
+    ALL = -1
+    NATIVE = 0
     SERVICE = 1
     ACTIVITY = 2
     RECEIVER = 3
     PROVIDER = 4
-    CLASS = 5  # androidx.recyclerview unknown
-    PACKAGE_NAME = 6  # com.google.android.trichromelibrary only
+    DEX = 5  # androidx.recyclerview unknown
+    STATIC = 6  # com.google.android.trichromelibrary only
+    PERMISSION = 7
+    METADATA = 8
 
 
 @dataclass
@@ -133,7 +138,9 @@ def query(name: str, type: Optional[RuleType] = None) -> List[Rule]:
     return response
 
 
-def query_many(names: Iterable[str], type: Optional[RuleType] = None) -> List[Rule]:
+def query_many(
+    names: Iterable[str], type: Optional[RuleType] = None, use_regex: bool = True
+) -> List[Rule]:
     """
     Find rules by names (filenames, activity names, etc.).
     """
