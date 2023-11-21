@@ -1,6 +1,6 @@
 [project]
 name = "pylibchecker"
-version = "0.0.2"
+version = "0.0.3"
 description = "Utils inspired by LibChecker, checking Android so files."
 authors = [{ name = "LY", email = "ly-niko@qq.com" }]
 license = { file = "LICENSE" }
@@ -16,7 +16,7 @@ keywords = ["apk", "jni", "android"]
 
 [tool.poetry]
 name = "pylibchecker"
-version = "0.0.2"
+version = "0.0.3"
 description = "Utils inspired by LibChecker, checking Android so files."
 authors = ["LY <ly-niko@qq.com>"]
 license = "MIT"

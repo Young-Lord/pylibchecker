@@ -3,7 +3,7 @@ from enum import IntEnum
 import os
 import re
 import sqlite3
-from typing import Final, List, Optional, Union
+from typing import Final, Iterable, List, Optional, Union
 import warnings
 
 try:
@@ -130,4 +130,14 @@ def query(name: str, type: Optional[RuleType] = None) -> List[Rule]:
     response.extend(rules.get(name, []))
     if type is not None:
         response = [i for i in response if i.type == type]
+    return response
+
+
+def query_many(names: Iterable[str], type: Optional[RuleType] = None) -> List[Rule]:
+    """
+    Find rules by names (filenames, activity names, etc.).
+    """
+    response: List[Rule] = []
+    for name in names:
+        response.extend(query(name, type))
     return response

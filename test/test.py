@@ -23,6 +23,16 @@ class Test(unittest.TestCase):
         self.assertEqual(len(responses), 1)
         response = responses[0]
         self.assertEqual(response.label, "xCrash")
+        self.assertEqual(response.name, "libxcrash.so")
+        self.assertEqual(response.isRegexRule, 0)
+
+    def test_query_many(self):
+        responses = libchecker.query_many(
+            ["libxcrash.so", "libcocos2dcpp.so"], libchecker.RuleType.SO
+        )
+        self.assertEqual(len(responses), 2)
+        self.assertEqual(responses[0].label, "xCrash")
+        self.assertEqual(responses[1].label, "cocos2d-cpp")
 
 
 if __name__ == "__main__":
