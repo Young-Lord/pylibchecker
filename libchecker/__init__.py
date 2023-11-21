@@ -30,6 +30,9 @@ ensure_dir(DATA_DIR)
 
 
 def update(no_init_rules: bool = False) -> None:
+    """
+    Downlod rules from GitHub, and init rules.
+    """
     r = requests.get(RULE_URL)
     with open(os.path.join(DATA_DIR, RULE_FILENAME), "wb") as f:
         f.write(r.content)
@@ -43,6 +46,10 @@ if not os.path.isfile(RULE_FILE):
 
 
 class RuleType(IntEnum):
+    """
+    The `type` field in `rules_table` of `rules.db`.
+    """
+
     SO = 0
     SERVICE = 1
     ACTIVITY = 2
@@ -54,6 +61,10 @@ class RuleType(IntEnum):
 
 @dataclass
 class Rule:
+    """
+    A rule in `rules_table` of `rules.db`.
+    """
+
     _id: int
     name: str
     label: str
@@ -88,6 +99,9 @@ regex_rules: List[Rule] = []
 
 
 def init_rules():
+    """
+    Init rules from `rules.db`.
+    """
     global rules, regex_rules
     rules = {}
     regex_rules = []
@@ -105,10 +119,15 @@ def init_rules():
 init_rules()
 
 
-def query(name: str) -> List[Rule]:
+def query(name: str, type: Optional[RuleType] = None) -> List[Rule]:
+    """
+    Find a rule by name (filename, activity name, etc.).
+    """
     response: List[Rule] = []
     for regex_rule in regex_rules:
         if re.match(regex_rule.name, name):
             response.append(regex_rule)
     response.extend(rules.get(name, []))
+    if type is not None:
+        response = [i for i in response if i.type == type]
     return response
