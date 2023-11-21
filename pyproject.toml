@@ -36,6 +36,7 @@ python = "^3.8"
 requests = "^2.31.0"
 platformdirs = "^4.0.0"
 
+[tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry-core"]
