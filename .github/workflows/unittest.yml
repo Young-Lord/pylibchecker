@@ -8,6 +8,8 @@ jobs:
       matrix:
         python-version:
           [
+            "pypy3.8",
+            # higher version of pypy: cannot install poetry because `libffi.so.6` not found
             "3.8",
             "3.9",
             "3.10",
